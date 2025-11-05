@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 
 app.use(cors())
 
@@ -55,7 +55,8 @@ app.get('/main.js', (request, response)=>{
 })
 
 app.get('/api/:name',(request,response)=>{
-    const marvelCharacterName = request.params.name.toLowerCase() //request.params   // { name: 'eminem' } -> with .name // 'eminem'
+    const marvelCharacterName = request.params.name.toLowerCase() 
+    //request.params   // { name: 'eminem' } -> with .name // 'eminem'
 
 
     if( marvelRivalsCharacters[marvelCharacterName] ){
@@ -66,7 +67,7 @@ app.get('/api/:name',(request,response)=>{
     
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`The server is now running on port ${PORT}! Betta Go Catch It!`)
-})
 
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
